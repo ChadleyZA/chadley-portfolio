@@ -1,0 +1,137 @@
+---
+// src/components/Certifications.astro
+
+const certs = [
+  { issuer: 'Huawei', name: 'HCIA – Cloud Service Certification', date: 'Valid until November 2026' },
+  { issuer: 'Netcampus Group', name: 'MS-102: Managing Identity Synchronization', date: 'February 2026' },
+  { issuer: 'Netcampus Group', name: 'MS-102: Managing Users & Groups', date: 'January 2026' },
+  { issuer: 'Netcampus Group', name: 'Windows 11 Desktop Troubleshooting', date: 'January 2026' },
+  { issuer: 'Netcampus Group', name: 'Maintaining Windows 11 Systems', date: 'January 2026' },
+  { issuer: 'Cisco', name: 'Small Business Technical Overview', date: 'March 2023' },
+  { issuer: 'Services SETA', name: 'FET Certificate: New Venture Creation Level 4', date: 'June 2024' },
+];
+
+const education = [
+  {
+    issuer: 'Education',
+    name: 'Information Technology — Life Choices Academy',
+    date: 'Aug 2020 – Feb 2021 · Cape Town',
+  },
+  {
+    issuer: 'Education',
+    name: 'National Senior Certificate (Matric) — Modderdam High School',
+    date: '2015 – 2019',
+  },
+];
+---
+
+<section id="certs">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="certs-grid fade-in">
+      {
+        certs.map((c) => (
+          <div class="cert-card">
+            <div class="cert-issuer">{c.issuer}</div>
+            <div class="cert-name">{c.name}</div>
+            <div class="cert-date">{c.date}</div>
+          </div>
+        ))
+      }
+      {
+        education.map((e) => (
+          <div class="cert-card edu">
+            <div class="cert-issuer">{e.issuer}</div>
+            <div class="cert-name">{e.name}</div>
+            <div class="cert-date">{e.date}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #certs {
+    padding: 120px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .cert-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    transition: border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--border-hover);
+  }
+
+  .cert-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .cert-card.edu {
+    background: var(--accent-dim2);
+    border-color: rgba(212, 245, 78, 0.12);
+  }
+
+  .cert-issuer {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  .cert-name {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .cert-date {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .certs-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .certs-grid { grid-template-columns: 1fr; }
+  }
+</style>

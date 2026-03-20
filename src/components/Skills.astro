@@ -1,0 +1,164 @@
+---
+// src/components/Skills.astro
+
+const skillGroups = [
+  {
+    icon: '🌐',
+    title: 'Web Development',
+    skills: [
+      { label: 'HTML5', featured: true },
+      { label: 'CSS3', featured: true },
+      { label: 'JavaScript', featured: true },
+      { label: 'Figma', featured: false },
+      { label: 'WordPress', featured: true },
+      { label: 'Website Maintenance', featured: false },
+      { label: 'Frontend Dev', featured: false },
+      { label: 'Backend Dev', featured: false },
+      { label: 'Authentication Systems', featured: false },
+    ],
+  },
+  {
+    icon: '☁️',
+    title: 'Cloud & Infrastructure',
+    skills: [
+      { label: 'Cloud Firewall Config', featured: true },
+      { label: 'Virtual Machines', featured: true },
+      { label: 'Backup & Storage', featured: false },
+      { label: 'Cloud Service Platforms', featured: false },
+      { label: 'Huawei HCIA', featured: true },
+      { label: 'Cloud Security', featured: false },
+    ],
+  },
+  {
+    icon: '🔌',
+    title: 'Networking',
+    skills: [
+      { label: 'TCP/IP', featured: true },
+      { label: 'MPLS & SD-WAN', featured: true },
+      { label: 'Network Troubleshooting', featured: false },
+      { label: 'Cat5/Cat6 Cabling', featured: false },
+      { label: 'Network Infrastructure', featured: false },
+      { label: 'IP Networking', featured: false },
+    ],
+  },
+  {
+    icon: '📞',
+    title: 'VoIP & Communication',
+    skills: [
+      { label: 'Hosted PBX Systems', featured: true },
+      { label: 'VoIP Deployment', featured: true },
+      { label: 'Contact Centre Platforms', featured: false },
+      { label: 'VoIP Support', featured: false },
+      { label: 'PBX Configuration', featured: false },
+    ],
+  },
+  {
+    icon: '🪟',
+    title: 'Microsoft Technologies',
+    skills: [
+      { label: 'Microsoft 365', featured: true },
+      { label: 'Identity Synchronization', featured: true },
+      { label: 'User & Group Management', featured: false },
+      { label: 'Windows 10/11 Admin', featured: false },
+      { label: 'MS-102', featured: false },
+    ],
+  },
+  {
+    icon: '🛠️',
+    title: 'IT Support',
+    skills: [
+      { label: 'Desktop Support', featured: true },
+      { label: 'Hardware Troubleshooting', featured: true },
+      { label: 'System Diagnostics', featured: false },
+      { label: 'Software Support', featured: false },
+      { label: 'Client IT Support', featured: false },
+      { label: 'System Maintenance', featured: false },
+    ],
+  },
+];
+---
+
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid fade-in">
+      {
+        skillGroups.map((group) => (
+          <div class="skill-group">
+            <span class="skill-group-icon">{group.icon}</span>
+            <div class="skill-group-title">{group.title}</div>
+            <div class="skill-tags">
+              {group.skills.map((s) => (
+                <span class={`tag${s.featured ? ' featured' : ''}`}>{s.label}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #skills {
+    padding: 120px 0;
+    background: var(--bg2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .skill-group {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    transition: all 0.25s;
+  }
+
+  .skill-group:hover {
+    border-color: var(--border-hover);
+    background: var(--bg4);
+  }
+
+  .skill-group:first-child  { border-radius: var(--radius) 0 0 0; }
+  .skill-group:nth-child(3) { border-radius: 0 var(--radius) 0 0; }
+  .skill-group:nth-child(4) { border-radius: 0 0 0 var(--radius); }
+  .skill-group:last-child   { border-radius: 0 0 var(--radius) 0; }
+
+  .skill-group-icon {
+    font-size: 22px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .skill-group-title {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>

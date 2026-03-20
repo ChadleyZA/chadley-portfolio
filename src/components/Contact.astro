@@ -1,0 +1,223 @@
+---
+// src/components/Contact.astro
+---
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner fade-in">
+      <div class="contact-left">
+        <h2 class="contact-heading">
+          Let's build<br />something <span class="accent">great.</span>
+        </h2>
+        <p class="contact-subtext">
+          I'm actively looking for web developer roles in Cape Town. If you're
+          hiring or have a project in mind, I'd love to hear from you.
+        </p>
+        <div class="contact-details">
+          <a href="mailto:chadleyderoseza@gmail.com" class="contact-item">
+            <div class="contact-icon">✉</div>
+            chadleyderoseza@gmail.com
+          </a>
+          <a href="tel:+27794383711" class="contact-item">
+            <div class="contact-icon">☎</div>
+            079 438 3711
+          </a>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            Cape Town, South Africa
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="subject">Subject</label>
+          <input id="subject" type="text" placeholder="Job opportunity / Project enquiry" />
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell me about the role or project..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="formSubmit">
+          Send Message →
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  #contact {
+    padding: 120px 0;
+    background: var(--bg2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-heading {
+    font-family: var(--sans);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .contact-heading .accent {
+    color: var(--accent);
+  }
+
+  .contact-subtext {
+    color: var(--muted2);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 36px;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--muted2);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item:hover {
+    color: var(--accent);
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+  }
+
+  .contact-item:hover .contact-icon {
+    border-color: var(--accent);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-field label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    width: 100%;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-field textarea {
+    min-height: 120px;
+  }
+
+  .form-submit {
+    background: var(--accent);
+    color: #080808;
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .form-submit:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const btn = document.getElementById('formSubmit') as HTMLButtonElement;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#5cffa3';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      form.reset();
+    }, 3000);
+  });
+</script>

@@ -1,0 +1,159 @@
+---
+// src/components/Experience.astro
+
+const jobs = [
+  {
+    company: 'Innovo Networks',
+    role: 'PBX Technician',
+    period: 'Oct 2022 – Mar 2026',
+    points: [
+      'Deployed and supported hosted PBX and contact centre communication systems for business clients',
+      'Configured networking environments including IP networking, connectivity, and Cat5/Cat6 cabling installation',
+      'Configured cloud firewall environments and security settings to protect client infrastructure',
+      'Set up virtual machines, backup systems, and storage environments',
+      'Assisted with website maintenance and development tasks for client-facing platforms',
+      'Diagnosed complex network and communication system issues in fast-paced environments',
+      'Provided direct technical support and IT consultation to business clients',
+    ],
+  },
+  {
+    company: 'LC Studio',
+    role: 'Web Development Intern & IT Intern',
+    period: 'Mar 2021 – Mar 2022',
+    points: [
+      'Assisted with frontend and backend website development across multiple client projects',
+      'Developed login interfaces and user authentication features for web applications',
+      'Maintained website functionality, applying design updates and bug fixes',
+      'Worked with HTML, CSS, and design tools including Figma',
+    ],
+  },
+];
+---
+
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline fade-in">
+      {
+        jobs.map((job) => (
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-company">{job.company}</span>
+              <span class="timeline-period">{job.period}</span>
+            </div>
+            <div class="timeline-role">{job.role}</div>
+            <ul class="timeline-list">
+              {job.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #experience {
+    padding: 120px 0;
+    background: var(--bg2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--border) 80%);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 56px;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -36px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg2);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .timeline-company {
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .timeline-period {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  .timeline-role {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+
+  .timeline-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-list li {
+    color: var(--muted2);
+    font-size: 13px;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .timeline-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 11px;
+  }
+</style>

@@ -1,0 +1,235 @@
+---
+// src/components/Projects.astro
+
+const projects = [
+  {
+    num: '01',
+    category: 'Web Application',
+    title: 'Business Client Portal with Authentication',
+    description:
+      'A full-stack web portal featuring secure user authentication, role-based dashboard, and client management tools. Built to replicate systems used in business IT environments — with login, session management, and protected routes. Designed responsively with a clean UI using Figma wireframes as a base.',
+    stack: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'Authentication', 'Figma'],
+    demo: '#',
+    code: '#',
+    featured: true,
+    badge: 'Featured',
+  },
+  {
+    num: '02',
+    category: 'WordPress',
+    title: 'Small Business WordPress Theme',
+    description:
+      'A custom WordPress template built for small businesses — clean, fast, and mobile-first. Includes a contact form, service listings, and an SEO-optimised structure. Delivers real client-ready sites with CMS flexibility.',
+    stack: ['WordPress', 'PHP', 'CSS3', 'HTML5', 'Responsive Design'],
+    demo: '#',
+    code: '#',
+    featured: false,
+    badge: null,
+  },
+  {
+    num: '03',
+    category: 'WordPress',
+    title: 'E-Commerce WordPress Store',
+    description:
+      'A WooCommerce-powered online store template with product pages, cart, and checkout flows. Custom-styled with a dark, modern aesthetic. Built to be maintainable and extendable by non-technical clients.',
+    stack: ['WordPress', 'WooCommerce', 'PHP', 'CSS3', 'JavaScript'],
+    demo: '#',
+    code: '#',
+    featured: false,
+    badge: null,
+  },
+  {
+    num: '04',
+    category: 'Dashboard',
+    title: 'Network Status Dashboard',
+    description:
+      'A browser-based monitoring dashboard displaying live connectivity status, uptime metrics, and alert logs. Combines networking knowledge with frontend skills — pulling data from a REST API and rendering it with charts and status indicators.',
+    stack: ['HTML5', 'CSS3', 'JavaScript', 'REST API', 'Chart.js'],
+    demo: '#',
+    code: '#',
+    featured: false,
+    badge: null,
+  },
+];
+---
+
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid fade-in">
+      {
+        projects.map((p) => (
+          <div class={`project-card${p.featured ? ' featured' : ''}`}>
+            {p.badge && <div class="project-badge">{p.badge}</div>}
+            <div class="project-num">
+              {p.num} — {p.category}
+            </div>
+            <h3 class="project-title">{p.title}</h3>
+            <p class="project-desc">{p.description}</p>
+            <div class="project-stack">
+              {p.stack.map((s) => (
+                <span class="stack-tag">{s}</span>
+              ))}
+            </div>
+            <div class="project-links">
+              <a href={p.demo} class="project-link">↗ Live Demo</a>
+              <a href={p.code} class="project-link">⌥ Source Code</a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  #projects {
+    padding: 120px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      500px circle at var(--mx, 50%) var(--my, 50%),
+      var(--accent-dim),
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-hover);
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+  }
+
+  .project-card:first-child {
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .project-badge {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(212, 245, 78, 0.2);
+    color: var(--accent);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-num {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    font-family: var(--mono);
+  }
+
+  .project-title {
+    font-family: var(--sans);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    color: var(--muted2);
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .stack-tag {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted2);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted2);
+    font-size: 12px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .project-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.project-card').forEach((card) => {
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', x + '%');
+      card.style.setProperty('--my', y + '%');
+    });
+  });
+</script>
