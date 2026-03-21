@@ -41,12 +41,12 @@ const projects = [
   {
     num: '04',
     category: 'Dashboard',
-    title: 'Network Status Dashboard',
+    title: 'Agency Management Dashboard',
     description:
-      'A browser-based monitoring dashboard displaying live connectivity status, uptime metrics, and alert logs. Combines networking knowledge with frontend skills — pulling data from a REST API and rendering it with charts and status indicators.',
-    stack: ['HTML5', 'CSS3', 'JavaScript', 'REST API', 'Chart.js'],
-    demo: '#',
-    code: '#',
+      'A full-featured agency dashboard built for Plane View Collective. Tracks revenue, active clients, projects, and tasks in real time. Features a revenue overview chart, project status table, traffic source breakdown, and recent activity feed — all wrapped in a clean dark UI.',
+    stack: ['Astro', 'CSS3', 'JavaScript', 'Chart.js', 'Responsive Design'],
+    demo: 'https://chadley-admin-dashboard.netlify.app/',
+    code: 'https://github.com/ChadleyZA/admin-dashboard',
     featured: false,
     badge: null,
   },
@@ -76,8 +76,8 @@ const projects = [
               ))}
             </div>
             <div class="project-links">
-              <a href={p.demo} class="project-link">↗ Live Demo</a>
-              <a href={p.code} class="project-link">⌥ Source Code</a>
+              <a href={p.demo} class="project-link" target="_blank" rel="noopener noreferrer">↗ Live Demo</a>
+              <a href={p.code} class="project-link" target="_blank" rel="noopener noreferrer">⌥ Source Code</a>
             </div>
           </div>
         ))
